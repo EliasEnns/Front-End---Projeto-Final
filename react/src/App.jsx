@@ -6,6 +6,22 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Login from './components/LoginPopup'
 
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const BrowserRouter = createBrowserRouter([
+  {
+    path: '/',
+    element: <App />
+  }
+]
+)
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <RouterProvider router = {router}/>
+  </React.StrictMode>,
+)
+
+
 function App() {
   const [count, setCount] = useState(0)
 
