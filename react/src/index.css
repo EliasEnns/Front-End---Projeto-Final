@@ -66,3 +66,30 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+
+.popup-content {
+  border-radius: 25px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: white;
+  transition: border-color 0.25s;
+}
+.popup-arrow {
+  color: rgb(255, 255, 255);
+}
+[role='tooltip'].popup-content {
+  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.137) 0px 3px;
+}
+
+.popup-overlay {
+  background: rgba(0, 0, 0, 0.274);
+}
+[data-popup='tooltip'].popup-overlay {
+  background: transparent;
+  
+}
