@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-
+import React from 'react'
 import 'reactjs-popup/dist/index.css';
 
 import './App.css'
@@ -13,9 +13,15 @@ function App() {
 
   return (
     <>
-
       <NavBar />
-  <Outlet />
+
+      <div >
+
+      <Outlet />
+      </div>
+
+
+      <p>Merda</p>
 
 
     </>

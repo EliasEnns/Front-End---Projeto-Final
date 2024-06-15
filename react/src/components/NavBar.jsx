@@ -6,7 +6,7 @@ function NavBar() {
     return (
         <div>
             <span style={{padding: '10px'}}><Link to="/Home">Home</Link></span>
-            <span style={{padding: '10px'}}><Link to="/products">Products</Link></span>
+            <span style={{padding: '10px'}}><Link to="/Products">Products</Link></span>
             <Login/>
 
         </div>
