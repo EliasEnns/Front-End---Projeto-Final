@@ -13,15 +13,10 @@ function App() {
 
   return (
     <>
+    
       <NavBar />
 
-      <div >
-
       <Outlet />
-      </div>
-
-
-      <p>Merda</p>
 
 
     </>

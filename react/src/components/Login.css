@@ -10,7 +10,7 @@
     }
     
     .popup-inner {
-    background-color: white;
+    background-color: rgb(112, 112, 112);
     position: absolute;
     left: 50%;
     top: 50%;
@@ -22,7 +22,14 @@
     }
     
     .popup-inner h2 {
+    color:#ffffff;
     margin-top: 0;
+    }
+    .popup-inner h2[type='title'] {
+    color:#ffffff;
+    position: absolute;
+    left: 50%;
+    top: 0;
     }
     
     .popup-inner label {
@@ -41,7 +48,7 @@
     .popup-inner button[type="submit"],
     .popup-inner button[type="button"] {
     background-color: #4CAF50;
-    color: white;
+    color: rgb(0, 0, 0);
     border: none;
     padding: 10px 20px;
     text-align: center;
@@ -73,12 +80,20 @@
     
     .popup-inner button[type="submit"]:disabled {
     background-color: #bfbfbf;
-    color: #ffffff;
+    color: #000000;
     cursor: not-allowed;
     }
     
     .popup-inner button[type="button"]:disabled {
     background-color: #bfbfbf;
-    color: #ffffff;
+    color: #000000;
     cursor: not-allowed;
     }
+
+    .popup-inner button[type="close"] {
+        margin-top: 20px;
+        background-color: #f44336;
+        position: absolute;
+        left: 1;
+        top: 0;
+        }

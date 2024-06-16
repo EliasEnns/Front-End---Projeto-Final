@@ -1,6 +1,12 @@
 import React from 'react';
 import { useState } from 'react';
 import Popup from 'reactjs-popup';
+import './Login.css';
+
+
+
+
+
 
 function Login(props) {
   const [username, setUsername] = useState('');
@@ -11,7 +17,6 @@ function Login(props) {
     // Code to handle login goes here
     props.toggle();
   }
-
   return (
     <Popup
       trigger={<button className="button"> Login / Registrar </button>}
@@ -19,50 +24,32 @@ function Login(props) {
       nested
     >
       {close => (
-        <div className="modal">
-          <button className="close" onClick={close}>
-            ×
-          </button>
-
-          <h2>Login</h2>
-
-          <div className="content">
-            
-            <form onSubmit={handleLogin}>
-              <label>
-                Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-              </label>
-              <label>
-                Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-              </label>
-              <button type="submit">Login</button>
-            </form>
-            <button onClick={props.toggle}>Close</button>
-          </div>
-          <div className="actions">
-            <Popup
-              trigger={<button className="button"> Trigger </button>}
-              position="top center"
-              nested
-            >
-              <span>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
-                magni omnis delectus nemo, maxime molestiae dolorem numquam
-                mollitia, voluptate ea, accusamus excepturi deleniti ratione
-                sapiente! Laudantium, aperiam doloribus. Odit, aut.
-              </span>
-            </Popup>
-            <button
-              className="button"
-              onClick={() => {
-                console.log('modal closed ');
-                close();
-              }}
-            >
-              close modal
+        <div className="popup">
+          <div className="popup-inner">
+            <div>
+            <button type='close' onClick={close}>
+              ×
             </button>
+            <h2 type='title' >Login</h2>
+            </div>
+            <div className="content">
+              <form onSubmit={handleLogin}>
+                <div>
+                  <label>
+                    Username:
+                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
+                  </label>
+                </div>
+                <div>
+                  <label>
+                    Password:
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+                  </label>
+                </div>
+                <button type="submit">Login</button>
+              </form>
+              <button onClick={props.toggle}>Close</button>
+            </div>
           </div>
         </div>
       )}
