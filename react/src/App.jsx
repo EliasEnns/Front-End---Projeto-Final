@@ -6,20 +6,25 @@ import 'reactjs-popup/dist/index.css';
 import './App.css'
 import NavBar from './components/NavBar'
 
+import AuthProvider from "./hooks/AuthProvider";
 
 function App() {
 
-
-
   return (
     <>
-    
-      <NavBar />
+        <div className="App">
 
-      <Outlet />
-
-
+        <AuthProvider >
+        <>
+        <NavBar /> 
+        <Outlet /> 
+        </>
+        </AuthProvider >
+    </div>
+     
     </>
+
+    
   )
 }
 

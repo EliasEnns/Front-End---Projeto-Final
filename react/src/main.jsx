@@ -1,33 +1,54 @@
-
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import ErrorPage from './components/ErrorPage.jsx'
 import Home from './routes/Home.jsx' // Import the Home component
 import Products from './routes/Products.jsx' // Import the Products component
 import App from './App.jsx'
+import Dashboard from './routes/Dashboard.jsx'
 import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, BrowserRouter } from 'react-router-dom'
+
+import AuthProvider from './hooks/AuthProvider'
+import PrivateRoute from "./router/Route"
 
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <App />,
-    errorElement: <ErrorPage />,
-    children: [
-  {
-    path: '/Products',
-    element: <Products />
-  },
-  {
-    path: '/',
-    element: <Home />,
-  },
-]
-},
-]
-)
+  // {
+    // element: <AuthProvider />,
+    // children: [
+      {
+        path: '/',
+        element: <App />,
+        errorElement: <ErrorPage />,
+        children: [
+          {
+            path: '/Products',
+            element: <Products />
+          },
+          {
+            path: '/',
+            element: <Home />,
+          },
+        ]
+      },
+      {
+        element: <PrivateRoute />,
+        children: [
+          {
+            path: '/dashboard',
+            element: <Dashboard />,
+          },
+        ]
+      }
+    // ]
+  // }
+])
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router = {router}/>
+    <RouterProvider router={router}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </RouterProvider>
   </React.StrictMode>,
 )

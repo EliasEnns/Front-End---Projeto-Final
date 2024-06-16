@@ -27,7 +27,7 @@
     }
     .popup-inner h2[type='title'] {
     color:#ffffff;
-    position: absolute;
+    position: relative;
     left: 50%;
     top: 0;
     }
@@ -94,6 +94,6 @@
         margin-top: 20px;
         background-color: #f44336;
         position: absolute;
-        left: 1;
+        left: 10;
         top: 0;
         }
