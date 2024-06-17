@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-        <div className="App">
+    <div className="App">
 
         <AuthProvider>
         <>
@@ -21,10 +21,7 @@ function App() {
         </>
         </AuthProvider>
     </div>
-     
     </>
-
-    
   )
 }
 

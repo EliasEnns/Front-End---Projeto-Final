@@ -10,6 +10,7 @@ import { createBrowserRouter, RouterProvider, BrowserRouter } from 'react-router
 
 import AuthProvider from './hooks/AuthProvider'
 import PrivateRoute from "./router/Route"
+import LoginPrompt from './routes/LoginPrompt'
 
 const router = createBrowserRouter([
   // {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
           {
             path: '/',
             element: <Home />,
+          },
+          {
+            path: '/login',
+            element: <LoginPrompt />,
           },
           {
             element: <PrivateRoute />,
