@@ -26,11 +26,14 @@ app.post('/auth/login', (req, res) => {
     return res.status(401).json({ message: 'Invalid credentials' });
   }
 
-  // Mock token (in real-world scenario, use JWT or similar)
-  const token = `mock_token_${user.id}`;
+// Mock token (in real-world scenario, use JWT or similar)
+const token = `mock_token_${user.id}`;
+
+// Store token in user object
+user.token = token;
 
   // Return user data and token
-  res.json({ data: { user: { username: user.username, name: user.name }, token }});
+  res.json({ data: { user: { username: user.username, name: user.name }, token: user.token}});
 });
 
 // Start server

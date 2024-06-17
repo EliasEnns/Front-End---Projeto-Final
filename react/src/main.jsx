@@ -28,17 +28,18 @@ const router = createBrowserRouter([
             path: '/',
             element: <Home />,
           },
+          {
+            element: <PrivateRoute />,
+            children: [
+              {
+                path: '/dashboard',
+                element: <Dashboard />,
+              },
+            ]
+          }
+
         ]
       },
-      {
-        element: <PrivateRoute />,
-        children: [
-          {
-            path: '/dashboard',
-            element: <Dashboard />,
-          },
-        ]
-      }
     // ]
   // }
 ])
@@ -47,8 +48,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <RouterProvider router={router}>
       <BrowserRouter>
-        <App />
+        {/* <AuthProvider> Make sure AuthProvider wraps around your App component */}
+          <App />
+        {/* </AuthProvider> */}
       </BrowserRouter>
     </RouterProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);

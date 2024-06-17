@@ -14,12 +14,12 @@ function App() {
     <>
         <div className="App">
 
-        <AuthProvider >
+        <AuthProvider>
         <>
         <NavBar /> 
         <Outlet /> 
         </>
-        </AuthProvider >
+        </AuthProvider>
     </div>
      
     </>

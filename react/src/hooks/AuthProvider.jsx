@@ -1,12 +1,23 @@
-import { useContext, createContext, useState } from "react";
+// AuthProvider.jsx
+import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(localStorage.getItem("site") || "");
+  const [token, setToken] = useState("");
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("site");
+    if (storedToken) {
+      setToken(storedToken);
+      // Optionally, you can fetch user info using the token here
+    }
+  }, []);
+
   const loginAction = async (data) => {
     try {
       const response = await fetch("http://localhost:5000/auth/login", {
@@ -19,8 +30,8 @@ const AuthProvider = ({ children }) => {
       const res = await response.json();
       if (res.data) {
         setUser(res.data.user);
-        setToken(res.token);
-        localStorage.setItem("site", res.token);
+        setToken(res.data.token);
+        localStorage.setItem("site", res.data.token);
         navigate("/dashboard");
         return;
       }
@@ -42,7 +53,6 @@ const AuthProvider = ({ children }) => {
       {children}
     </AuthContext.Provider>
   );
-
 };
 
 export default AuthProvider;
