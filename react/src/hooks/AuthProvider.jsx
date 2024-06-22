@@ -1,4 +1,3 @@
-// AuthProvider.jsx
 import { useContext, createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -20,24 +19,25 @@ const AuthProvider = ({ children }) => {
 
   const loginAction = async (data) => {
     try {
-      const response = await fetch("http://localhost:5000/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const res = await response.json();
-      if (res.data) {
-        setUser(res.data.user);
-        setToken(res.data.token);
-        localStorage.setItem("site", res.data.token);
-        navigate("/dashboard");
-        return;
+      const response = await fetch("http://localhost:3000/users");
+      const users = await response.json();
+      const user = users.find(
+        (u) => u.username === data.username && u.password === data.password
+      );
+
+      if (!user) {
+        throw new Error("Invalid credentials");
       }
-      throw new Error(res.message);
+
+      // Mock token (in real-world scenario, use JWT or similar)
+      const token = `mock_token_${user.id}`;
+
+      setUser({ username: user.username, name: user.name });
+      setToken(token);
+      localStorage.setItem("site", token);
+      navigate("/dashboard");
     } catch (err) {
-      console.error(err);
+      console.error(err.message);
     }
   };
 
