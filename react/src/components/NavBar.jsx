@@ -4,6 +4,7 @@ import Login from './LoginButton'
 import { useAuth } from '../hooks/AuthProvider';
 
 function NavBar() {
+    const auth = useAuth();
     return (
         <div className='NavBar'>  
             <div className='NavButtons'>
@@ -12,8 +13,7 @@ function NavBar() {
                 <button className='NavButton'><Link to="/Dashboard">Dashboard</Link></button>
                 <button className='NavButton' onClick={useAuth().logOut}>Logout</button>
             </div>
-
-            <div className='Login'><Login/></div>
+            <button className='Login'><Link to="/profile">{auth.user?.username}</Link></button>
         </div>
     );
 }

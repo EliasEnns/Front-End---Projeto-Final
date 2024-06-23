@@ -1,22 +1,31 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../hooks/AuthProvider';
-
 
 const Login = () => {
   const [input, setInput] = useState({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
+    confirmPassword: '',
   });
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const auth = useAuth();
+
   const handleSubmitEvent = (e) => {
     e.preventDefault();
-    if (input.username !== "" && input.password !== "") {
-      auth.loginAction(input);
+    if (input.username !== '' && input.password !== '') {
+      if (isRegistering) {
+        if (input.password === input.confirmPassword) {
+          auth.registerAction(input);
+        } else {
+          alert('Passwords do not match');
+        }
+      } else {
+        auth.loginAction(input);
+      }
       return;
     }
-    alert("please provide a valid input");
+    alert('Please provide valid input');
   };
 
   const handleInput = (e) => {
@@ -26,29 +35,33 @@ const Login = () => {
       [name]: value,
     }));
   };
-  return (
-<>
 
-        <h2 type='title' >Login</h2>
+  const handleToggleRegister = () => {
+    setIsRegistering((prev) => !prev);
+  };
+
+  return (
+    <>
+      <h2 type="title">{isRegistering ? 'Register' : 'Login'}</h2>
       <div className="content">
         <form onSubmit={handleSubmitEvent}>
           <div>
             <label>
               Email:
-              <input 
+              <input
                 type="input"
                 id="user-name"
                 name="username"
                 placeholder="maria"
                 aria-describedby="user-name"
                 aria-invalid="false"
-                onChange={handleInput} 
+                onChange={handleInput}
               />
             </label>
           </div>
           <div>
             <label>
-              Senha:
+              Password:
               <input
                 type="password"
                 id="password"
@@ -59,11 +72,38 @@ const Login = () => {
               />
             </label>
           </div>
-          <button type="submit" className="btn-submit" >Login</button>
+          {isRegistering && (
+            <div>
+              <label>
+                Confirm Password:
+                <input
+                  type="password"
+                  id="confirm-password"
+                  name="confirmPassword"
+                  aria-describedby="confirm-password"
+                  aria-invalid="false"
+                  onChange={handleInput}
+                />
+              </label>
+            </div>
+          )}
+          {isRegistering ? (
+            <button type="submit" className="btn-submit">
+              Register
+            </button>
+          ) : (
+            <button type="submit" className="btn-submit">
+              Login
+            </button>
+          )}
+          <button type="button" onClick={handleToggleRegister}>
+            {isRegistering
+              ? 'Already registered? Login now'
+              : "Don't have a login? Register now"}
+          </button>
         </form>
       </div>
-
-      </>
+    </>
   );
 };
 

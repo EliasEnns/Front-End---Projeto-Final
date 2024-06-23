@@ -10,6 +10,7 @@ import AuthProvider from './hooks/AuthProvider';
 import Login from './routes/Login.jsx';
 import PrivateRoute from './router/PrivateRoute';
 import Layout from './components/Layout'; // Import the Layout component
+import Profile from './routes/Profile'; // Import the Layout component
 
 const Main = () => {
   return (
@@ -34,6 +35,9 @@ const Main = () => {
                     <Route 
                       path="dashboard" 
                       element={<Dashboard />} />
+                    <Route 
+                      path="profile" 
+                      element={<Profile />} />
                   </Route>
               </Route>
           <Route path="*" element={<ErrorPage />} />
