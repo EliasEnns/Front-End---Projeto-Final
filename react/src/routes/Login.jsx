@@ -16,7 +16,8 @@ const Login = () => {
     if (input.username !== '' && input.password !== '') {
       if (isRegistering) {
         if (input.password === input.confirmPassword) {
-          auth.registerAction(input);
+          const { confirmPassword, ...registerData } = input; // Exclude confirmPassword
+          auth.registerAction(registerData);
         } else {
           alert('Passwords do not match');
         }
