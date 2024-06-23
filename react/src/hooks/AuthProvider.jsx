@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
       setUser({ username: user.username, name: user.name });
       setToken(token);
       localStorage.setItem("site", token);
-      navigate("/dashboard");
+      navigate("/");
     } catch (err) {
       console.error(err.message);
     }

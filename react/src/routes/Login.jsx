@@ -37,10 +37,10 @@ const Login = () => {
               Email:
               <input 
                 type="input"
-                id="user-email"
+                id="user-name"
                 name="username"
-                placeholder="you@woohoo.com"
-                aria-describedby="user-email"
+                placeholder="maria"
+                aria-describedby="user-name"
                 aria-invalid="false"
                 onChange={handleInput} 
               />

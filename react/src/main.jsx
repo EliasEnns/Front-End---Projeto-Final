@@ -16,14 +16,26 @@ const Main = () => {
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<PrivateRoute />}>
-            <Route element={<Layout />}>
-              <Route index element={<App />} />
-              <Route path="products" element={<Products />} />
-              <Route path="dashboard" element={<Dashboard />} />
-            </Route>
-          </Route>
+          <Route 
+            path="/login"
+            element={<Login />} />
+              <Route 
+                path="/" 
+                element={<PrivateRoute />}
+                errorElement={<ErrorPage />}
+                >
+                  <Route element={<Layout />}>
+                    <Route
+                      index 
+                      element={<App />}/>
+                    <Route 
+                      path="products" 
+                      element={<Products />} />
+                    <Route 
+                      path="dashboard" 
+                      element={<Dashboard />} />
+                  </Route>
+              </Route>
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </AuthProvider>

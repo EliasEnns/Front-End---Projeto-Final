@@ -1,20 +1,20 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import React from 'react'
-import 'reactjs-popup/dist/index.css';
-
+import { useAuth } from "./hooks/AuthProvider";
 import './App.css'
 import NavBar from './components/NavBar'
 
-import AuthProvider from "./hooks/AuthProvider";
-
 function App() {
-
+  const auth = useAuth();
   return (
+    
     <>
     <div className="App">
 
         <>
+        <h1>Home</h1>
+        <h1>Bem Vindo! {auth.user?.username}</h1>
         <Outlet />
         </>
     </div>
