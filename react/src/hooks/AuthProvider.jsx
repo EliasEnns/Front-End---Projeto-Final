@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
       // Mock token (in real-world scenario, use JWT or similar)
       const token = `mock_token_${user.id}`;
 
-      setUser({ username: user.username, name: user.name });
+      setUser({ id: user.id, username: user.username, name: user.name });
       setToken(token);
       localStorage.setItem("site", token);
       navigate("/");
@@ -99,7 +99,7 @@ const AuthProvider = ({ children }) => {
       // Mock token (in real-world scenario, use JWT or similar)
       const token = `mock_token_${user.id}`;
 
-      setUser({ username: user.username, name: user.name });
+      setUser({ id: user.id, username: user.username, name: user.name });
       setToken(token);
       localStorage.setItem("site", token);
       navigate("/");
