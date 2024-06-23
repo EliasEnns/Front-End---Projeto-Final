@@ -48,43 +48,6 @@ const AuthProvider = ({ children }) => {
     navigate("/login");
   };
 
-  const registerAction = async (data) => {
-    try {
-      const response = await fetch("http://localhost:3000/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error("Registration failed");
-      }
-
-      const user = await response.json();
-
-      // Check if username already exists
-      const existingUserResponse = await fetch("http://localhost:3000/users");
-      const existingUsers = await existingUserResponse.json();
-      const isUsernameTaken = existingUsers.some(
-        (u) => u.username === data.username
-      );
-      if (isUsernameTaken) {
-        throw new Error("Username already in use");
-      }
-
-      // Mock token (in real-world scenario, use JWT or similar)
-      const token = `mock_token_${user.id}`;
-
-      setUser({ username: user.username, name: user.name });
-      setToken(token);
-      localStorage.setItem("site", token);
-      navigate("/");
-    } catch (err) {
-      console.error(err.message);
-    }
-  };
   const deleteUserAction = async () => {
     try {
       if (!user) {
@@ -102,6 +65,44 @@ const AuthProvider = ({ children }) => {
       setToken("");
       localStorage.removeItem("site");
       navigate("/login");
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  const registerAction = async (data) => {
+    try {
+      // Check if username already exists
+      const existingUserResponse = await fetch("http://localhost:3000/users");
+      const existingUsers = await existingUserResponse.json();
+      const isUsernameTaken = existingUsers.some(
+        (u) => u.username === data.username
+      );
+      if (isUsernameTaken) {
+        throw new Error("Username already in use");
+      }
+
+      const response = await fetch("http://localhost:3000/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Registration failed");
+      }
+
+      const user = await response.json();
+
+      // Mock token (in real-world scenario, use JWT or similar)
+      const token = `mock_token_${user.id}`;
+
+      setUser({ username: user.username, name: user.name });
+      setToken(token);
+      localStorage.setItem("site", token);
+      navigate("/");
     } catch (err) {
       console.error(err.message);
     }
