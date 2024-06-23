@@ -1,62 +1,38 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import ErrorPage from './components/ErrorPage.jsx'
-import Home from './routes/Home.jsx' // Import the Home component
-import Products from './routes/Products.jsx' // Import the Products component
-import App from './App.jsx'
-import Dashboard from './routes/Dashboard.jsx'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import ErrorPage from './components/ErrorPage.jsx';
+import Products from './routes/Products.jsx';
+import App from './App.jsx';
+import Dashboard from './routes/Dashboard.jsx';
 import './index.css';
-import { createBrowserRouter, RouterProvider, BrowserRouter } from 'react-router-dom'
+import AuthProvider from './hooks/AuthProvider';
+import Login from './routes/Login.jsx';
+import PrivateRoute from './router/PrivateRoute';
+import Layout from './components/Layout'; // Import the Layout component
 
-import AuthProvider from './hooks/AuthProvider'
-import PrivateRoute from "./router/Route"
-import Login from './routes/Login.jsx'
-
-const router = createBrowserRouter([
-  // {
-    // element: <AuthProvider />,
-    // children: [
-      {
-        path: '/',
-        element: <App />,
-        errorElement: <ErrorPage />,
-        children: [
-          {
-            path: '/Products',
-            element: <Products />
-          },
-          {
-            path: '/',
-            element: <Login />,
-          },
-          {
-            path: '/login',
-            element: <Login />,
-          },
-          {
-            element: <PrivateRoute />,
-            children: [
-              {
-                path: '/dashboard',
-                element: <Dashboard />,
-              },
-            ]
-          }
-
-        ]
-      },
-    // ]
-  // }
-])
+const Main = () => {
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<PrivateRoute />}>
+            <Route element={<Layout />}>
+              <Route index element={<App />} />
+              <Route path="products" element={<Products />} />
+              <Route path="dashboard" element={<Dashboard />} />
+            </Route>
+          </Route>
+          <Route path="*" element={<ErrorPage />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
+  );
+};
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router}>
-      <BrowserRouter>
-        {/* <AuthProvider> Make sure AuthProvider wraps around your App component */}
-          <App />
-        {/* </AuthProvider> */}
-      </BrowserRouter>
-    </RouterProvider>
+    <Main />
   </React.StrictMode>
 );

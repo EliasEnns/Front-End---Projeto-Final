@@ -14,12 +14,9 @@ function App() {
     <>
     <div className="App">
 
-        <AuthProvider>
         <>
-        <NavBar /> 
-        <Outlet /> 
+        <Outlet />
         </>
-        </AuthProvider>
     </div>
     </>
   )
