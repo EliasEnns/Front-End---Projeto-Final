@@ -11,7 +11,7 @@ body {
     text-align: left;
 }
 .table tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #636363;
 }
 .table th {
     background-color: #4CAF50;

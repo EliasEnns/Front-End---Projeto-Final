@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage.jsx';
 import Services from './routes/Services.jsx';
 import App from './App.jsx';
-import Dashboard from './routes/Dashboard.jsx';
+import Users from './routes/Users.jsx';
 import './index.css';
 import AuthProvider from './hooks/AuthProvider';
 import Login from './routes/Login.jsx';
@@ -30,11 +30,11 @@ const Main = () => {
                       index 
                       element={<App />}/>
                     <Route 
-                      path="Services" 
+                      path="services" 
                       element={<Services />} />
                     <Route 
-                      path="dashboard" 
-                      element={<Dashboard />} />
+                      path="Users" 
+                      element={<Users />} />
                     <Route 
                       path="profile" 
                       element={<Profile />} />

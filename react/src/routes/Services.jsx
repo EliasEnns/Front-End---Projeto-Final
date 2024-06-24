@@ -37,19 +37,22 @@ const [edit, setEdit] = useState(false);
   }
 
   // Busca apenas um produto pelo seu id:
-  const getProductById = async(id) => {
+  // Busca apenas um produto pelo seu id:
+const getProductById = async (id) => {
     // Faz a requisição http
     const res = await fetch(url + `/${id}`);
     const data = await res.json();
     // Carrega os dados no formulário para edição:
-    setName(data.name)
+    setName(data.name);
     setPrice(data.price);
     setStock(data.stock);
+    setDescription(data.description); // Set the description state
+    setWeight(data.weight); // Set the weight state
     setId(data.id);
 
     // Habilita edição:
     setEdit(true);
-  }
+};
 
   const saveProduct = async (e) => {
     e.preventDefault();
@@ -117,7 +120,7 @@ const handleWeight = (e) => { setWeight(e.target.value) };
         }
       </div>
 
-      <ProductForm name={name} price={price} stock={stock} description={description} weight={weight} handleName={handleName} handlePrice={handlePrice} handleStock={handleStock} saveProduct={saveProduct} handleDescription={handleDescription} handleWeight={handleWeight}/>
+      <ProductForm name={name} price={price} stock={stock} description={description} weight={weight} handleName={handleName} handlePrice={handlePrice} handleStock={handleStock} handleDescription={handleDescription} handleWeight={handleWeight} saveProduct={saveProduct} />
     </>
   )
 }

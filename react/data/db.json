@@ -1,60 +1,12 @@
 {
   "users": [
     {
-      "id": "Administrator",
       "username": "Admin",
       "password": "Admin",
       "name": "Elias Enns",
-      "email": "elias0enns@gmail.com",
-      "telephone": "48991364057"
-    },
-    {
-      "id": "a793",
-      "username": "bababa",
-      "password": "123",
-      "name": "JaodaPica",
-      "email": "penis@pica.com",
-      "telephone": "2"
-    },
-    {
-      "id": "9be2",
-      "username": "user123",
-      "password": "123",
-      "name": "",
-      "email": "",
-      "telephone": ""
-    },
-    {
-      "id": "1b26",
-      "username": "user25",
-      "password": "123",
-      "name": "",
-      "email": "",
-      "telephone": ""
-    },
-    {
-      "id": "4714",
-      "username": "user2",
-      "password": "12345",
-      "name": "",
-      "email": "",
-      "telephone": ""
-    },
-    {
-      "id": "bb76",
-      "username": "123",
-      "password": "1234",
-      "name": "",
-      "email": "",
-      "telephone": ""
-    },
-    {
-      "id": "9157",
-      "username": "25",
-      "password": "12",
-      "name": "",
-      "email": "",
-      "telephone": ""
+      "email": "addfew",
+      "telephone": "2561514551414541545",
+      "id": "Administrator"
     },
     {
       "id": "761f",
@@ -75,12 +27,20 @@
   ],
   "products": [
     {
-      "id": "5c39",
-      "name": "123231231",
-      "price": "231123231",
-      "stock": "222222",
-      "description": "22222",
-      "weight": "222222"
+      "id": "2058",
+      "name": "123",
+      "price": "123",
+      "stock": "123",
+      "description": "123",
+      "weight": "123"
+    },
+    {
+      "id": "5dd8",
+      "name": "Michel Almeida da Rosa",
+      "price": "0",
+      "stock": "1",
+      "description": "Gordo",
+      "weight": "99999999999999999"
     }
   ]
 }
