@@ -38,41 +38,12 @@ const AuthProvider = ({ children }) => {
       navigate("/");
     } catch (err) {
       console.error(err.message);
-    }
-  };
-
-  const logOut = () => {
-    setUser(null);
-    setToken("");
-    localStorage.removeItem("site");
-    navigate("/login");
-  };
-
-  const deleteUserAction = async () => {
-    try {
-      if (!user) {
-        throw new Error("User not found");
-      }
-      const response = await fetch(`http://localhost:3000/users/${user?.id}`, {
-        method: "DELETE",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete user");
-      }
-
-      setUser(null);
-      setToken("");
-      localStorage.removeItem("site");
-      navigate("/login");
-    } catch (err) {
-      console.error(err.message);
+      throw err; // Propagate the error
     }
   };
 
   const registerAction = async (data) => {
     try {
-      // Check if username already exists
       const existingUserResponse = await fetch("http://localhost:3000/users");
       const existingUsers = await existingUserResponse.json();
       const isUsernameTaken = existingUsers.some(
@@ -105,8 +76,40 @@ const AuthProvider = ({ children }) => {
       navigate("/");
     } catch (err) {
       console.error(err.message);
+      throw err; // Propagate the error
     }
   };
+
+  const logOut = () => {
+    setUser(null);
+    setToken("");
+    localStorage.removeItem("site");
+    navigate("/login");
+  };
+
+  const deleteUserAction = async () => {
+    try {
+      if (!user) {
+        throw new Error("User not found");
+      }
+      const response = await fetch(`http://localhost:3000/users/${user?.id}`, {
+        method: "DELETE",
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete user");
+      }
+
+      setUser(null);
+      setToken("");
+      localStorage.removeItem("site");
+      navigate("/login");
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  
 
   const editUsernameAction = async (newUsername) => {
     try {

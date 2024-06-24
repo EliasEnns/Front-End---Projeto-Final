@@ -11,25 +11,31 @@ const Login = () => {
     telephone: '',
   });
   const [isRegistering, setIsRegistering] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const auth = useAuth();
 
-  const handleSubmitEvent = (e) => {
+  const handleSubmitEvent = async (e) => {
     e.preventDefault();
+    setErrorMessage(''); // Clear any previous error messages
     if (input.username !== '' && input.password !== '') {
-      if (isRegistering) {
-        if (input.password === input.confirmPassword) {
-          const { confirmPassword, ...registerData } = input; // Exclude confirmPassword
-          auth.registerAction(registerData);
+      try {
+        if (isRegistering) {
+          if (input.password === input.confirmPassword) {
+            const { confirmPassword, ...registerData } = input; // Exclude confirmPassword
+            await auth.registerAction(registerData);
+          } else {
+            setErrorMessage('Passwords do not match');
+          }
         } else {
-          alert('Passwords do not match');
+          await auth.loginAction(input);
         }
-      } else {
-        auth.loginAction(input);
+      } catch (error) {
+        setErrorMessage(error.message);
       }
-      return;
+    } else {
+      setErrorMessage('Please provide valid input');
     }
-    alert('Please provide valid input');
   };
 
   const handleInput = (e) => {
@@ -149,6 +155,7 @@ const Login = () => {
               ? 'Already registered? Login now'
               : "Don't have a login? Register now"}
           </button>
+          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
         </form>
       </div>
     </>

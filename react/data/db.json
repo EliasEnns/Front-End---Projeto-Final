@@ -3,7 +3,7 @@
     {
       "username": "Admin",
       "password": "Admin",
-      "name": "Elias Enns",
+      "name": "Elias Enns Paulo",
       "email": "addfew",
       "telephone": "2561514551414541545",
       "id": "Administrator"
@@ -15,24 +15,16 @@
       "name": "wqeqewweq",
       "email": "weqwqeqew",
       "telephone": "ewqweqwq"
-    },
-    {
-      "id": "ea90",
-      "username": "user252",
-      "password": "12",
-      "name": "deez",
-      "email": "nuts",
-      "telephone": "12"
     }
   ],
   "products": [
     {
-      "id": "2058",
-      "name": "123",
+      "name": "Serviço paulinho",
       "price": "123",
       "stock": "123",
       "description": "123",
-      "weight": "123"
+      "weight": "123",
+      "id": "2058"
     },
     {
       "id": "5dd8",

@@ -9,6 +9,7 @@ import './index.css';
 import AuthProvider from './hooks/AuthProvider';
 import Login from './routes/Login.jsx';
 import PrivateRoute from './router/PrivateRoute';
+import AdminPrivateRoute from './router/AdminPrivateRoute.jsx';
 import Layout from './components/Layout'; // Import the Layout component
 import Profile from './routes/Profile'; // Import the Layout component
 
@@ -32,9 +33,9 @@ const Main = () => {
                     <Route 
                       path="services" 
                       element={<Services />} />
-                    <Route 
-                      path="Users" 
-                      element={<Users />} />
+                    <Route path="Users" element={<AdminPrivateRoute />}>
+                      <Route index element={<Users />} />
+                    </Route>
                     <Route 
                       path="profile" 
                       element={<Profile />} />
