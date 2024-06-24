@@ -4,9 +4,9 @@
       "id": "Administrator",
       "username": "Admin",
       "password": "Admin",
-      "name": "Administrador",
-      "email": "",
-      "telephone": ""
+      "name": "Elias Enns",
+      "email": "elias0enns@gmail.com",
+      "telephone": "48991364057"
     },
     {
       "id": "a793",
@@ -73,5 +73,14 @@
       "telephone": "12"
     }
   ],
-  "products": []
+  "products": [
+    {
+      "id": "5c39",
+      "name": "123231231",
+      "price": "231123231",
+      "stock": "222222",
+      "description": "22222",
+      "weight": "222222"
+    }
+  ]
 }

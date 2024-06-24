@@ -1,3 +1,6 @@
+import React from 'react'
+import './ProductForm.css'
+
 function ProductForm({name, price, stock, description, weight, handleName, handlePrice, handleStock, handleDescription, handleWeight, saveProduct}) {
     return (
         <div className='container'>
@@ -23,7 +26,9 @@ function ProductForm({name, price, stock, description, weight, handleName, handl
                 <label className='form-label' htmlFor="peso">Peso:</label>
                 <input className='form-input' value={weight} type="number" name="peso" onChange={(e) => handleWeight(e)} required/>
                 </div>
+                <div>
                 <input className='form-submit' type="submit" value="Cadastrar" />
+                </div>
             </form>
         </div>
     )

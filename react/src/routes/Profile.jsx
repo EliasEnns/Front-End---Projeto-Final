@@ -142,69 +142,111 @@ const Profile = ({ user }) => {
 
     return (
         <>
-            <h1>Profile</h1>
-            <h1>Welcome! {auth.user?.username}</h1>
+            <h1>Profile Management</h1>
+            <h1>Welcome, {auth.user?.username}</h1>
             {editingUsername ? (
                 <>
-                    <input
-                        type="text"
-                        value={editedUsername}
-                        onChange={(e) => setEditedUsername(e.target.value)}
-                    />
-                    <input
-                        type="text"
-                        value={editedName}
-                        onChange={(e) => setEditedName(e.target.value)}
-                        placeholder="Name"
-                    />
-                    <input
-                        type="email"
-                        value={editedEmail}
-                        onChange={(e) => setEditedEmail(e.target.value)}
-                        placeholder="Email"
-                    />
-                    <input
-                        type="tel"
-                        value={editedTelephone}
-                        onChange={(e) => setEditedTelephone(e.target.value)}
-                        placeholder="Telephone"
-                    />
-                    <button onClick={handleSaveProfile}>Save Profile</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <div>
+                        <label htmlFor="username">Username:</label>
+                        <input
+                            type="text"
+                            id="username"
+                            value={editedUsername}
+                            onChange={(e) => setEditedUsername(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="name">Name:</label>
+                        <input
+                            type="text"
+                            id="name"
+                            value={editedName}
+                            onChange={(e) => setEditedName(e.target.value)}
+                            placeholder="Name"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email:</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={editedEmail}
+                            onChange={(e) => setEditedEmail(e.target.value)}
+                            placeholder="Email"
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="telephone">Telephone:</label>
+                        <input
+                            type="tel"
+                            id="telephone"
+                            value={editedTelephone}
+                            onChange={(e) => setEditedTelephone(e.target.value)}
+                            placeholder="Telephone"
+                        />
+                    </div>
+                    <div>
+                        <button onClick={handleSaveProfile}>Save Profile</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
                 </>
             ) : (
                 <>
-                    <p>Username: {auth.user?.username}</p>
-                    <p>Name: {auth.user?.name}</p>
-                    <p>Email: {auth.user?.email}</p>
-                    <p>Telephone: {auth.user?.telephone}</p>
-                    <button onClick={handleEditUsername}>Edit Profile</button>
+                    <div>
+                        <div>
+                            <p>Username: {auth.user?.username}</p>
+                        </div>
+                        <div>
+                            <p>Name: {auth.user?.name}</p>
+                        </div>
+                        <div>
+                            <p>Email: {auth.user?.email}</p>
+                        </div>
+                        <div>
+                            <p>Telephone: {auth.user?.telephone}</p>
+                        </div>
+                        <div>
+                            <button onClick={handleEditUsername}>Edit Profile</button>
+                        </div>
+                    </div>
                 </>
             )}
             {editingPassword ? (
                 <>
-                    <input
-                        type="password"
-                        placeholder="New Password"
-                        value={editedPassword}
-                        onChange={(e) => setEditedPassword(e.target.value)}
-                    />
-                    <input
-                        type="password"
-                        placeholder="Confirm Password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                    />
-                    <button onClick={handleSavePassword}>Save Password</button>
-                    <button onClick={handleCancel}>Cancel</button>
+                    <div>
+                        <label htmlFor="newPassword">New Password:</label>
+                        <input
+                            type="password"
+                            id="newPassword"
+                            placeholder="New Password"
+                            value={editedPassword}
+                            onChange={(e) => setEditedPassword(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="confirmPassword">Confirm Password:</label>
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirm Password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                        />
+                    </div>
+                    <div>
+                        <button onClick={handleSavePassword}>Save Password</button>
+                        <button onClick={handleCancel}>Cancel</button>
+                    </div>
                 </>
             ) : (
                 <>
-                    <p>Password: ********</p>
-                    <button onClick={handleEditPassword}>Edit Password</button>
+                    <div>
+                        <p>Password: ********</p>
+                        <button onClick={handleEditPassword}>Edit Password</button>
+                    </div>
                 </>
             )}
-            <button onClick={handleDelete}>Delete User</button>
+            <button style={{ backgroundColor: 'red' }} onClick={handleDelete}>Delete User</button>
         </>
     );
 };
