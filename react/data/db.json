@@ -1,19 +1,77 @@
 {
   "users": [
     {
-      "id": "a36d",
-      "username": "user1",
-      "password": "password1"
+      "id": "Administrator",
+      "username": "Admin",
+      "password": "Admin",
+      "name": "Administrador",
+      "email": "",
+      "telephone": ""
     },
     {
-      "id": "c211",
-      "username": "user12",
-      "password": "12"
+      "id": "a793",
+      "username": "bababa",
+      "password": "123",
+      "name": "JaodaPica",
+      "email": "penis@pica.com",
+      "telephone": "2"
     },
     {
-      "id": "aed4",
-      "username": "User1",
-      "password": "sdasdaadssdasda"
+      "id": "9be2",
+      "username": "user123",
+      "password": "123",
+      "name": "",
+      "email": "",
+      "telephone": ""
+    },
+    {
+      "id": "1b26",
+      "username": "user25",
+      "password": "123",
+      "name": "",
+      "email": "",
+      "telephone": ""
+    },
+    {
+      "id": "4714",
+      "username": "user2",
+      "password": "12345",
+      "name": "",
+      "email": "",
+      "telephone": ""
+    },
+    {
+      "id": "bb76",
+      "username": "123",
+      "password": "1234",
+      "name": "",
+      "email": "",
+      "telephone": ""
+    },
+    {
+      "id": "9157",
+      "username": "25",
+      "password": "12",
+      "name": "",
+      "email": "",
+      "telephone": ""
+    },
+    {
+      "id": "761f",
+      "username": "use3",
+      "password": "123",
+      "name": "wqeqewweq",
+      "email": "weqwqeqew",
+      "telephone": "ewqweqwq"
+    },
+    {
+      "id": "ea90",
+      "username": "user252",
+      "password": "12",
+      "name": "deez",
+      "email": "nuts",
+      "telephone": "12"
     }
-  ]
+  ],
+  "products": []
 }

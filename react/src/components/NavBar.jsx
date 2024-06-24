@@ -9,7 +9,7 @@ function NavBar() {
         <div className='NavBar'>  
             <div className='NavButtons'>
                 <button className='NavButton'><Link to="/">Home</Link></button>
-                <button className='NavButton'><Link to="/Products">Products</Link></button>
+                <button className='NavButton'><Link to="/Services">Services</Link></button>
                 <button className='NavButton'><Link to="/Dashboard">Dashboard</Link></button>
                 <button className='NavButton' onClick={useAuth().logOut}>Logout</button>
             </div>

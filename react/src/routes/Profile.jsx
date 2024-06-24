@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../hooks/AuthProvider';
 
-const Profile = () => {
-    const auth = useAuth();
+const Profile = ({ user }) => {
+    const auth = useAuth(); 
+    const navigate = useNavigate();
     const [editingUsername, setEditingUsername] = useState(false);
     const [editingPassword, setEditingPassword] = useState(false);
     const [editedUsername, setEditedUsername] = useState('');
     const [editedPassword, setEditedPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [editedName, setEditedName] = useState('');
+    const [editedEmail, setEditedEmail] = useState('');
+    const [editedTelephone, setEditedTelephone] = useState('');
+
+    useEffect(() => {
+        // Initialize state with current user data
+        setEditedUsername(auth.user?.username || '');
+        setEditedName(auth.user?.name || '');
+        setEditedEmail(auth.user?.email || '');
+        setEditedTelephone(auth.user?.telephone || '');
+        setEditedPassword('');
+        setConfirmPassword('');
+    }, [auth.user]);
 
     const handleEditUsername = () => {
         setEditingUsername(true);
@@ -20,22 +36,108 @@ const Profile = () => {
         setEditingUsername(false);
         setEditingPassword(false);
         setEditedUsername(auth.user?.username || '');
-        setEditedPassword(auth.user?.password || '');
+        setEditedName(auth.user?.name || '');
+        setEditedEmail(auth.user?.email || '');
+        setEditedTelephone(auth.user?.telephone || '');
+        setEditedPassword('');
+        setConfirmPassword('');
     };
 
-    const handleSaveUsername = () => {
-        auth.editUsernameAction(editedUsername);
-        setEditingUsername(false);
+    const handleSaveProfile = async () => {
+        try {
+            // Fetch all users to check username availability
+            const response = await fetch("http://localhost:3000/users");
+            const users = await response.json();
+    
+            // Check if username already exists (excluding current user's own username)
+            const isUsernameTaken = users.some(
+                (u) => u.username === editedUsername && u.id !== auth.user?.id
+            );
+    
+            if (isUsernameTaken) {
+                throw new Error("Username already in use");
+            }
+    
+            // Proceed to update the user profile
+            const updateResponse = await fetch(`http://localhost:3000/users/${auth.user?.id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: editedUsername,
+                    name: editedName,
+                    email: editedEmail,
+                    telephone: editedTelephone
+                }),
+            });
+    
+            if (!updateResponse.ok) {
+                throw new Error("Failed to save profile");
+            }
+    
+            // Update local state and UI upon successful update
+            auth.setUser((prevUser) => ({
+                ...prevUser,
+                username: editedUsername,
+                name: editedName,
+                email: editedEmail,
+                telephone: editedTelephone
+            }));
+            setEditingUsername(false);
+        } catch (err) {
+            console.error(err.message);
+        }
     };
 
-    const handleSavePassword = () => {
-        auth.editPasswordAction(editedPassword);
-        setEditingPassword(false);
+    const handleSavePassword = async () => {
+        if (editedPassword === confirmPassword) {
+            if (editedPassword.length > 0) {
+                try {
+                    const response = await fetch(`http://localhost:3000/users/${auth.user?.id}`, {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ password: editedPassword }),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Failed to edit password");
+                    }
+
+                    setEditingPassword(false);
+                } catch (err) {
+                    console.error(err.message);
+                }
+            } else {
+                alert('Password cannot be empty');
+            }
+        } else {
+            alert('Passwords do not match');
+        }
     };
 
-    const handleDelete = () => {
-        // Call the deleteUserAction function from authprovider
-        auth.deleteUserAction();
+    const handleDelete = async () => {
+        try {
+            if (!auth.user) {
+                throw new Error("User not found");
+            }
+            const response = await fetch(`http://localhost:3000/users/${auth.user?.id}`, {
+                method: "DELETE",
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to delete user");
+            }
+
+            auth.setUser(null);
+            auth.setToken("");
+            localStorage.removeItem("site");
+            navigate("/login");
+        } catch (err) {
+            console.error(err.message);
+        }
     };
 
     return (
@@ -49,32 +151,60 @@ const Profile = () => {
                         value={editedUsername}
                         onChange={(e) => setEditedUsername(e.target.value)}
                     />
-                    <button onClick={handleSaveUsername}>Save Username</button>
+                    <input
+                        type="text"
+                        value={editedName}
+                        onChange={(e) => setEditedName(e.target.value)}
+                        placeholder="Name"
+                    />
+                    <input
+                        type="email"
+                        value={editedEmail}
+                        onChange={(e) => setEditedEmail(e.target.value)}
+                        placeholder="Email"
+                    />
+                    <input
+                        type="tel"
+                        value={editedTelephone}
+                        onChange={(e) => setEditedTelephone(e.target.value)}
+                        placeholder="Telephone"
+                    />
+                    <button onClick={handleSaveProfile}>Save Profile</button>
                     <button onClick={handleCancel}>Cancel</button>
                 </>
             ) : (
                 <>
                     <p>Username: {auth.user?.username}</p>
-                    <button onClick={handleEditUsername}>Edit Username</button>
+                    <p>Name: {auth.user?.name}</p>
+                    <p>Email: {auth.user?.email}</p>
+                    <p>Telephone: {auth.user?.telephone}</p>
+                    <button onClick={handleEditUsername}>Edit Profile</button>
                 </>
             )}
             {editingPassword ? (
                 <>
                     <input
                         type="password"
+                        placeholder="New Password"
                         value={editedPassword}
                         onChange={(e) => setEditedPassword(e.target.value)}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                     <button onClick={handleSavePassword}>Save Password</button>
                     <button onClick={handleCancel}>Cancel</button>
                 </>
             ) : (
                 <>
-                    <p>Password: {auth.user?.password}</p>
+                    <p>Password: ********</p>
                     <button onClick={handleEditPassword}>Edit Password</button>
                 </>
             )}
-            <button onClick={handleDelete}>Delete</button>
+            <button onClick={handleDelete}>Delete User</button>
         </>
     );
 };

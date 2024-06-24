@@ -163,6 +163,8 @@ const AuthProvider = ({ children }) => {
       value={{
         token,
         user,
+        setUser,
+        setToken,
         loginAction,
         logOut,
         registerAction,

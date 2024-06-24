@@ -6,6 +6,9 @@ const Login = () => {
     username: '',
     password: '',
     confirmPassword: '',
+    name: '',
+    email: '',
+    telephone: '',
   });
   const [isRegistering, setIsRegistering] = useState(false);
 
@@ -48,7 +51,7 @@ const Login = () => {
         <form onSubmit={handleSubmitEvent}>
           <div>
             <label>
-              Email:
+              Username:
               <input
                 type="input"
                 id="user-name"
@@ -74,19 +77,63 @@ const Login = () => {
             </label>
           </div>
           {isRegistering && (
-            <div>
-              <label>
-                Confirm Password:
-                <input
-                  type="password"
-                  id="confirm-password"
-                  name="confirmPassword"
-                  aria-describedby="confirm-password"
-                  aria-invalid="false"
-                  onChange={handleInput}
-                />
-              </label>
-            </div>
+            <>
+              <div>
+                <label>
+                  Confirm Password:
+                  <input
+                    type="password"
+                    id="confirm-password"
+                    name="confirmPassword"
+                    aria-describedby="confirm-password"
+                    aria-invalid="false"
+                    onChange={handleInput}
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Name:
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your Name"
+                    aria-describedby="name"
+                    aria-invalid="false"
+                    onChange={handleInput}
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Email:
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    aria-describedby="email"
+                    aria-invalid="false"
+                    onChange={handleInput}
+                  />
+                </label>
+              </div>
+              <div>
+                <label>
+                  Telephone:
+                  <input
+                    type="tel"
+                    id="telephone"
+                    name="telephone"
+                    placeholder="123456789"
+                    aria-describedby="telephone"
+                    aria-invalid="false"
+                    onChange={handleInput}
+                  />
+                </label>
+              </div>
+            </>
           )}
           {isRegistering ? (
             <button type="submit" className="btn-submit">

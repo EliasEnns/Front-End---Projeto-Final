@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ErrorPage from './components/ErrorPage.jsx';
-import Products from './routes/Products.jsx';
+import Services from './routes/Services.jsx';
 import App from './App.jsx';
 import Dashboard from './routes/Dashboard.jsx';
 import './index.css';
@@ -30,8 +30,8 @@ const Main = () => {
                       index 
                       element={<App />}/>
                     <Route 
-                      path="products" 
-                      element={<Products />} />
+                      path="Services" 
+                      element={<Services />} />
                     <Route 
                       path="dashboard" 
                       element={<Dashboard />} />
